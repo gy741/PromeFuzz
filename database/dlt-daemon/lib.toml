@@ -1,11 +1,14 @@
-
 [dlt-daemon]
 
 language = "c"
 
 compile_commands_path = "database/dlt-daemon/latest/build_asan/compile_commands.json"
 
-header_paths = ["database/dlt-daemon/latest/code/include/dlt"]
+header_paths = [
+    "database/dlt-daemon/latest/code/src/shared",
+    "database/dlt-daemon/latest/code/src/lib",
+    "database/dlt-daemon/latest/bin_asan/include/dlt"
+]
 
 document_paths = [
     "database/dlt-daemon/latest/code/README.md",
@@ -15,10 +18,12 @@ document_paths = [
 document_has_api_usage = true
 
 output_path = "out/dlt-daemon"
+
 driver_build_args = [
     "database/dlt-daemon/latest/bin_asan/lib/static/libdlt.a",
-    "-lpthread",
-    "-I/promefuzz/database/dlt-daemon/latest/code/include"
+    "-Idatabase/dlt-daemon/latest/code/src/shared",
+    "-Idatabase/dlt-daemon/latest/code/src/lib",
+    "-Idatabase/dlt-daemon/latest/bin_asan/include/dlt"
 ]
 
 consumer_case_paths = [
