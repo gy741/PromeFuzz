@@ -1,0 +1,97 @@
+# =====================================================================
+# Preprocessor
+# =====================================================================
+[preprocessor]
+run_dummydriver_test = false
+dump_relevance_as_csv = false
+dump_call_graph = false
+
+# =====================================================================
+# Comprehender
+# =====================================================================
+[comprehender]
+embedding_llm = "local-embed"
+comprehension_llm = "openrouter-owl"
+retrieve_top_k = 3
+function_batch_size = 24
+
+# =====================================================================
+# Generator
+# =====================================================================
+[generator]
+generation_llm = "openrouter-owl"
+
+collect_depth = 3
+collect_one_def_in_same_names = true
+function_set_size = 6
+use_consumer_case_count = 50
+
+generation_rounds = 2
+sanitization_rounds = 5
+
+function_fail_limit = 5
+function_fail_if_driver_fail = 1.0
+function_fail_if_driver_miss = 0.5
+
+stagnation_limit = -1
+incidental_called_api_occurrence_increment = 0.0
+
+enable_constraint_learning = true
+learn_crash_threshold = 2
+disable_leak_sanitizer_threshold = 3
+
+enable_chat_history_consolidation = true
+enable_ast_based_api_coverage_check = true
+cleanup_temp = false
+
+# =====================================================================
+# Analyzer / Sanitizer
+# =====================================================================
+[analyzer]
+analysis_llm = "openrouter-gemma"
+
+# =====================================================================
+# LLM CONFIG
+# =====================================================================
+[llm]
+default_llm = "openrouter-owl"
+validate_llm = false
+enable_log = true
+
+# =========================================================================================
+# OLLAMA LOCAL EMBEDDING SERVER
+# =========================================================================================
+[llm.local-embed]
+llm_type = "ollama"
+host = "172.17.0.1"
+port = 11434
+model = "mxbai-embed-large"
+
+# =========================================================================================
+# OPENROUTER - OWL ALPHA CONFIG
+# =========================================================================================
+[llm.openrouter-owl]
+llm_type = "openai"
+api_base = "https://openrouter.ai/api/v1"
+base_url = "https://openrouter.ai/api/v1"
+openai_api_base = "https://openrouter.ai/api/v1"
+model = "openrouter/owl-alpha"
+api_key = "sk-or-v1-key"
+
+# =========================================================================================
+# OPENROUTER - GOOGLE GEMMA 4 CONFIG
+# =========================================================================================
+[llm.openrouter-gemma]
+llm_type = "openai"
+api_base = "https://openrouter.ai/api/v1"
+base_url = "https://openrouter.ai/api/v1"
+openai_api_base = "https://openrouter.ai/api/v1"
+model = "google/gemma-4-26b-a4b:free"
+api_key = "sk-or-v1-key"
+
+# =====================================================================
+# Binary path
+# =====================================================================
+[bin]
+preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
+cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
