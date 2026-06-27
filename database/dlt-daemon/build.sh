@@ -10,8 +10,10 @@ pushd build_$MODE
 cmake ../code \
     -DCMAKE_INSTALL_PREFIX=$PWD/../bin_$MODE \
     -DBUILD_SHARED_LIBS=OFF \
-    -DCMAKE_C_FLAGS_DEBUG=" -w " \
-    -DCMAKE_CXX_FLAGS_DEBUG=" -w " \
+    -DCMAKE_C_FLAGS="-w -Wno-unknown-warning-option" \
+    -DCMAKE_CXX_FLAGS="-w -Wno-unknown-warning-option" \
+    -DCMAKE_C_FLAGS_DEBUG=" -w -Wno-unknown-warning-option" \
+    -DCMAKE_CXX_FLAGS_DEBUG=" -w -Wno-unknown-warning-option" \
     -DWITH_DOC=ON \
     -DWITH_MAN=ON \
     -DDLT_IPC=UNIX_SOCKET \
