@@ -15,7 +15,6 @@ cmake ../code \
     -DCMAKE_C_FLAGS_DEBUG=" -w -Wno-unknown-warning-option" \
     -DCMAKE_CXX_FLAGS_DEBUG=" -w -Wno-unknown-warning-option" \
     -DWITH_DOC=ON \
-    -DWITH_MAN=ON \
     -DDLT_IPC=UNIX_SOCKET \
     -DDLT_USER_IPC_PATH=/ipc \
     -DWITH_DLT_DEBUGGERS=OFF \
