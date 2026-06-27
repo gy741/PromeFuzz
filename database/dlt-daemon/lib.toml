@@ -12,7 +12,8 @@ header_paths = [
 
 document_paths = [
     "database/dlt-daemon/latest/code/README.md",
-    "database/dlt-daemon/latest/bin_asan/share/doc",
+    "database/dlt-daemon/latest/build_normal/doc/DOC_DLT/html",
+    "database/dlt-daemon/latest/build_normal/doc/manuals",
     "database/dlt-daemon/latest/code/doc"
 ]
 document_has_api_usage = true
