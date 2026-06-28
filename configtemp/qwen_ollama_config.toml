@@ -1,0 +1,54 @@
+# =====================================================================
+# Comprehender
+# =====================================================================
+[comprehender]
+embedding_llm = "local_embed"
+comprehension_llm = "local_qwen_27b"
+function_batch_size = 32
+
+# =====================================================================
+# Generator
+# =====================================================================
+[generator]
+generation_llm = "local_qwen_27b"
+use_consumer_case_count = 30
+
+# =====================================================================
+# Analyzer / Sanitizer
+# =====================================================================
+[analyzer]
+analysis_llm = "local_qwen_27b_reasoner"
+
+# =====================================================================
+# LLM CONFIG
+# =====================================================================
+[llm]
+default_llm = "local_qwen_27b"
+
+# =========================================================================================
+# OLLAMA LOCAL SERVER SETTINGS
+# =========================================================================================
+[llm.local_embed]
+llm_type = "ollama"
+host = "172.17.0.1"
+port = 11434
+model = "qwen3-embedding:latest"
+
+[llm.local_qwen_27b]
+llm_type = "ollama"
+host = "172.17.0.1"
+port = 11434
+model = "qwen3.6:27b"
+
+[llm.local_qwen_27b_reasoner]
+llm_type = "ollama-reasoning"
+host = "172.17.0.1"
+port = 11434
+model = "qwen3.6:27b"
+max_tokens = 6144
+timeout = 600
+retry_times = 3
+
+[bin]
+preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
+cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
