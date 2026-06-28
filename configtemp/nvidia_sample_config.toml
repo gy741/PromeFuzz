@@ -1,0 +1,63 @@
+# =====================================================================
+# Preprocessor
+# =====================================================================
+[preprocessor]
+run_dummydriver_test = false
+dump_relevance_as_csv = false
+dump_call_graph = false
+
+# =====================================================================
+# Comprehender
+# =====================================================================
+[comprehender]
+embedding_llm = "local_qwen3_embed"
+comprehension_llm = "nvidia_nim_v4_flash"
+function_batch_size = 24
+
+# =====================================================================
+# Generator
+# =====================================================================
+[generator]
+generation_llm = "nvidia_nim_v4_flash"
+use_consumer_case_count = 30
+
+# =====================================================================
+# Analyzer / Sanitizer
+# =====================================================================
+[analyzer]
+analysis_llm = "nvidia_nim_v4_reasoner"
+
+# =====================================================================
+# LLM CONFIG
+# =====================================================================
+[llm]
+default_llm = "nvidia_nim_v4_flash"
+
+# =========================================================================================
+# LLM SETTINGS
+# =========================================================================================
+[llm.local_qwen3_embed]
+llm_type = "ollama"
+host = "172.17.0.1"
+port = 11434
+model = "qwen3-embedding:latest"
+
+[llm.nvidia_nim_v4_flash]
+llm_type = "openai"
+api_base = "https://integrate.api.nvidia.com/v1"
+base_url = "https://integrate.api.nvidia.com/v1"
+openai_api_base = "https://integrate.api.nvidia.com/v1"
+model = "deepseek-ai/deepseek-v4-flash"
+api_key = "nvapi-key"
+
+[llm.nvidia_nim_v4_reasoner]
+llm_type = "openai-reasoning"
+api_base = "https://integrate.api.nvidia.com/v1"
+base_url = "https://integrate.api.nvidia.com/v1"
+openai_api_base = "https://integrate.api.nvidia.com/v1"
+model = "deepseek-ai/deepseek-v4-flash"
+api_key = "nvapi-key"
+
+[bin]
+preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
+cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
