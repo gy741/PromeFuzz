@@ -58,6 +58,9 @@ openai_api_base = "https://integrate.api.nvidia.com/v1"
 model = "deepseek-ai/deepseek-v4-flash"
 api_key = "nvapi-key"
 
+# =====================================================================
+# Binary path
+# =====================================================================
 [bin]
 preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
 cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
