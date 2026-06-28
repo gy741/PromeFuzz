@@ -49,6 +49,9 @@ max_tokens = 6144
 timeout = 600
 retry_times = 3
 
+# =====================================================================
+# Binary path
+# =====================================================================
 [bin]
 preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
 cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
