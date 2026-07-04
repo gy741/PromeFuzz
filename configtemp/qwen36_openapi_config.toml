@@ -6,7 +6,7 @@ dump_call_graph = false
 [comprehender]
 embedding_llm = "local_embed"
 comprehension_llm = "local_qwen36_coder"
-retrieve_top_k = 3
+retrieve_top_k = 5
 function_batch_size = 32
 
 [generator]
