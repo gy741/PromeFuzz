@@ -22,12 +22,15 @@ document_has_api_usage = true
 output_path = "out/dlt-daemon"
 
 driver_build_args = [
-    "database/dlt-daemon/latest/bin_asan/lib/static/libdlt.a",
     "database/dlt-daemon/latest/code/src/shared/dlt_config_file_parser.c",
+    "database/dlt-daemon/latest/bin_asan/lib/static/libdlt.a",
     "-Idatabase/dlt-daemon/latest/code/include",
+    "-Idatabase/dlt-daemon/latest/code/include/dlt",
     "-Idatabase/dlt-daemon/latest/build_asan/include",
-    "-Idatabase/dlt-daemon/latest/code/src/shared"
+    "-Idatabase/dlt-daemon/latest/code/src/shared",
+    "-Idatabase/dlt-daemon/latest/code/src/daemon"
 ]
+
 
 consumer_case_paths = [
     "database/dlt-daemon/latest/code/src/daemon/dlt_daemon_common.c",
