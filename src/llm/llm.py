@@ -404,6 +404,7 @@ class OpenAIClient(LLMClient):
         max_tokens: int = -1,
         timeout: int = 80,
         retry_times: int = 3,
+        chat_template_kwargs: dict | None = None,
     ):
         """
         Initialize the OpenAI compatible LLM client
@@ -429,6 +430,7 @@ class OpenAIClient(LLMClient):
         self.model = model
         self.max_tokens = max_tokens
         self.retry_times = retry_times
+        self.chat_template_kwargs = chat_template_kwargs
 
         super().__init__()
 
@@ -461,6 +463,11 @@ class OpenAIClient(LLMClient):
                 else:
                     # Fallback to max_tokens for other APIs
                     api_params["max_tokens"] = self.max_tokens
+            if self.chat_template_kwargs is not None:  
+                api_params["extra_body"] = {           
+                    "chat_template_kwargs":            
+                        self.chat_template_kwargs      
+                }                                      
 
             completion = self.client.chat.completions.create(**api_params)
             response = completion.choices[0].message.content
