@@ -1,0 +1,10 @@
+[aflpp]
+fuzzer_path = "/root/AFLplusplus/afl-fuzz"
+[dlt-daemon.latest.promefuzz]
+fuzzer = "aflpp"
+bin      = "../../out/dlt-daemon/fuzz_driver/aflpp_synthesized_driver"
+bin_asan = "../../out/dlt-daemon/fuzz_driver/aflpp_synthesized_driver"
+in_path  = "../dlt-daemon/in"
+out_base_path = "../dlt-daemon/latest/fuzz"
+cmd = "@@"
+aflpp_args = ""
