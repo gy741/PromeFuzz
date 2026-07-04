@@ -1,33 +1,50 @@
 [dlt-daemon]
-
 language = "c"
-
 compile_commands_path = "database/dlt-daemon/latest/build_asan/compile_commands.json"
 
 header_paths = [
-    "database/dlt-daemon/latest/code/src/shared",
-    "database/dlt-daemon/latest/code/src/lib",
-    "database/dlt-daemon/latest/bin_asan/include/dlt"
+    "database/dlt-daemon/latest/code/include/dlt/dlt_common.h",
+    "database/dlt-daemon/latest/code/src/shared/dlt_config_file_parser.h"
 ]
 
 document_paths = [
     "database/dlt-daemon/latest/code/README.md",
-    "database/dlt-daemon/latest/build_normal/doc/DOC_DLT/html",
-    "database/dlt-daemon/latest/build_normal/doc/manuals",
-    "database/dlt-daemon/latest/code/doc"
+    "database/dlt-daemon/latest/code/doc/dlt_protocol_v2.md",
+    "database/dlt-daemon/latest/code/doc/dlt_design_specification.md",
+    "database/dlt-daemon/latest/code/doc/dlt_for_developers.md",
+    "database/dlt-daemon/latest/code/doc/dlt.conf.5.md",
+    "database/dlt-daemon/latest/code/doc/dlt_extended_network_trace.md",
+    "database/dlt-daemon/latest/code/doc/dlt_glossary.md"
 ]
+
 document_has_api_usage = true
 
 output_path = "out/dlt-daemon"
 
 driver_build_args = [
     "database/dlt-daemon/latest/bin_asan/lib/static/libdlt.a",
-    "-Idatabase/dlt-daemon/latest/code/src/shared",
-    "-Idatabase/dlt-daemon/latest/code/src/lib",
-    "-Idatabase/dlt-daemon/latest/bin_asan/include/dlt"
+    "database/dlt-daemon/latest/code/src/shared/dlt_config_file_parser.c",
+    "-Idatabase/dlt-daemon/latest/code/include",
+    "-Idatabase/dlt-daemon/latest/build_asan/include",
+    "-Idatabase/dlt-daemon/latest/code/src/shared"
 ]
 
 consumer_case_paths = [
-    "database/dlt-daemon/latest/code/tests",
-    "database/dlt-daemon/latest/code/examples"
+    "database/dlt-daemon/latest/code/src/daemon/dlt_daemon_common.c",
+    "database/dlt-daemon/latest/code/src/console/dlt-convert.c",
+    "database/dlt-daemon/latest/code/src/console/dlt-convert-v2.c"
 ]
+
+consumer_build_args = [
+    "-Idatabase/dlt-daemon/latest/code/include",
+    "-Idatabase/dlt-daemon/latest/build_asan/include",
+    "-Idatabase/dlt-daemon/latest/code/src/shared",
+    "-Idatabase/dlt-daemon/latest/code/src/daemon",
+    "-Idatabase/dlt-daemon/latest/code/src/gateway"
+]
+
+source_paths = [
+    "database/dlt-daemon/latest/code/src/shared/dlt_config_file_parser.c"
+]
+
+exclude_paths = []
