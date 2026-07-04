@@ -184,6 +184,7 @@ def setup_llm(llm_name: str) -> LLM.LLMClient:
                 selected_llm["max_tokens"],
                 selected_llm["timeout"],
                 selected_llm["retry_times"],
+                selected_llm.get("chat_template_kwargs"),
             )
         case LLM.LLM_TYPES.OLLAMA_REASONING.value:
             llm_client = LLM.OllamaReasoningClient(
