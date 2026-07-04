@@ -1,0 +1,55 @@
+[preprocessor]
+run_dummydriver_test = false
+dump_relevance_as_csv = false
+dump_call_graph = false
+
+[comprehender]
+embedding_llm = "local_embed"
+comprehension_llm = "local_qwen36_coder"
+retrieve_top_k = 3
+function_batch_size = 32
+
+[generator]
+generation_llm = "local_qwen36_coder"
+
+[analyzer]
+analysis_llm = "local_qwen36_reasoner"
+
+[llm]
+default_llm = "local_qwen36_coder"
+validate_llm = false
+enable_log = true
+
+[llm.local_qwen36_coder]
+llm_type = "openai"
+base_url = "http://172.17.0.1:8001/v1"
+api_key = "sk-noauth"
+model = "qwen36-coder"
+temperature = 0.7
+max_tokens = 16384
+timeout = 900
+retry_times = 3
+chat_template_kwargs = { enable_thinking = false }
+
+[llm.local_qwen36_reasoner]
+llm_type = "openai-reasoning"
+base_url = "http://172.17.0.1:8001/v1"
+api_key = "sk-noauth"
+model = "qwen36-coder"
+temperature = 0.6
+max_tokens = 16384
+timeout = 900
+retry_times = 3
+
+[llm.local_embed]
+llm_type = "ollama"
+host = "172.17.0.1"
+port = 11434
+model = "qwen3-embedding:4b"
+max_tokens = -1
+timeout = 30
+retry_times = 3
+
+[bin]
+preprocessor = "{PROMEFUZZ_PATH}/build/bin/preprocessor"
+cgprocessor = "{PROMEFUZZ_PATH}/build/bin/cgprocessor"
