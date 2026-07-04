@@ -1,6 +1,7 @@
 [aflpp]
 fuzzer_path = "/root/AFLplusplus/afl-fuzz"
 [dlt-daemon.latest.promefuzz]
+parallel = 30
 fuzzer = "aflpp"
 bin      = "../../out/dlt-daemon/fuzz_driver/aflpp_synthesized_driver"
 bin_asan = "../../out/dlt-daemon/fuzz_driver/aflpp_synthesized_driver"
