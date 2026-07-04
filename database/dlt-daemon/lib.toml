@@ -33,6 +33,8 @@ driver_build_args = [
 
 
 consumer_case_paths = [
+    "database/dlt-daemon/latest/code/tests",
+    "database/dlt-daemon/latest/code/examples"
     "database/dlt-daemon/latest/code/src/daemon/dlt_daemon_common.c",
     "database/dlt-daemon/latest/code/src/console/dlt-convert.c",
     "database/dlt-daemon/latest/code/src/console/dlt-convert-v2.c"
