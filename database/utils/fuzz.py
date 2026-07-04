@@ -103,23 +103,13 @@ class AFLPPFuzzer(BaseFuzzer):
             logger.error(f"{project_name}.{version}.{fuzz_id} not in fuzz config")
             return
 
-        window = self._create_window(f"{project_name}:{version}:{fuzz_id}")
+        n = int(fuzz_config.get("parallel", 4))
         path_base = Path(fuzz_config["out_base_path"])
-        start_idx = self._check_outdir(path_base, fuzz_id, timeout)
-        if start_idx == -1:
-            print("Already fuzzed for 10 times")
-            return
-        logger.info(
-            f"Fuzzing results will be saved to {path_base}/out_{fuzz_id}_{timeout}_{start_idx}~{start_idx + 3}"
-        )
-
         in_path = Path(fuzz_config["in_path"])
         driver_path = Path(fuzz_config["bin"])
 
-        for i in range(4):
-            if start_idx + i >= 10:
-                return
-            work_path = path_base / f"out_{fuzz_id}_{timeout}_{start_idx + i}"
+        for i in range(n):
+            work_path = path_base / f"out_{fuzz_id}_{timeout}_{i}"
             work_path.mkdir(parents=True, exist_ok=True)
             out_path = work_path / "out"
             fuzz_cmd = FUZZ_CMD.format(
@@ -133,9 +123,11 @@ class AFLPPFuzzer(BaseFuzzer):
             cmd_timeout = f"timeout -s 1 {timeout * 3600}"
             cmd = f"ASAN_OPTIONS='abort_on_error=1:symbolize=0:detect_odr_violation=0:allocator_may_return_null=1' {cmd_timeout} {fuzz_cmd}"
             # To deal with dummy_file, we run fuzz in the workdir
-            window.panes[i].send_keys(f"cd {work_path}")
-            window.panes[i].send_keys(cmd)
-
+            wd = Path(f"/dev/shm/wd_{fuzz_id}_{i}")
+            wd.mkdir(parents=True, exist_ok=True)
+            window = self.session.new_window(f"{fuzz_id}_{i}")
+            window.panes[0].send_keys(f"cd {wd}")
+            window.panes[0].send_keys(cmd)
 
 @click.command(help="Run fuzzing")
 @click.option(
