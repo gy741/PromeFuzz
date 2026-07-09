@@ -8,7 +8,8 @@ mkdir build_$MODE
 pushd build_$MODE
 
 cmake ../code \
-    -DCMAKE_INSTALL_PREFIX=$PWD/../bin_$MODE
+    -DCMAKE_INSTALL_PREFIX=$PWD/../bin_$MODE \
+    -DENABLE_SIGNAL_HANDLING=0
 
 if [[ $MODE == "asan" ]]; then
     bear -- make -j$JOBS || exit 1
