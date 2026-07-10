@@ -9,7 +9,9 @@ pushd build_$MODE
 
 cmake ../code \
     -DCMAKE_INSTALL_PREFIX=$PWD/../bin_$MODE \
-    -DENABLE_SIGNAL_HANDLING=0
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DDISABLE_DLT=ON \
+    -DCMAKE_CXX_FLAGS_DEBUG="-g -O0 -w -Wno-error -Wno-unknown-warning-option"
 
 if [[ $MODE == "asan" ]]; then
     bear -- make -j$JOBS || exit 1
