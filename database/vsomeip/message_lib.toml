@@ -1,0 +1,45 @@
+[vsomeip]
+
+language = "c++"
+
+compile_commands_path = "database/vsomeip/latest/build_asan/compile_commands.json"
+
+header_paths = [
+    "database/vsomeip/latest/code/implementation/message/include"
+]
+
+document_paths = [
+    "database/vsomeip/latest/code/README.md",
+    "database/vsomeip/latest/code/documentation/readme.md",
+    "database/vsomeip/latest/code/documentation/network-tests.md",
+    "database/vsomeip/latest/code/documentation/vsomeipConfiguration.md",
+    "database/vsomeip/latest/code/documentation/vsomeipProtocol.md",
+    "database/vsomeip/latest/code/documentation/vsomeipUserGuide.md",
+    "database/vsomeip/latest/code/documentation/README.md"
+]
+document_has_api_usage = true
+
+output_path = "out/vsomeip"
+
+driver_build_args = [
+    "database/vsomeip/latest/bin_asan/lib/libvsomeip3.so",
+    "-Idatabase/vsomeip/latest/code/interface",
+    "-Idatabase/vsomeip/latest/code/implementation/message/include",
+    "-std=c++17",
+    "-pthread",
+    "-Wl,-rpath,/workspace/PromeFuzz-vsomeip/database/vsomeip/latest/bin_asan/lib",
+    "-Wl,--disable-new-dtags"
+]
+
+consumer_case_paths = [
+    "database/vsomeip/latest/code/examples",
+    "database/vsomeip/latest/code/test"
+]
+
+driver_headers = []
+
+consumer_build_args = []
+source_paths = []
+exclude_paths = []
+api_ban_list_path = ""
+api_hints_path = ""
